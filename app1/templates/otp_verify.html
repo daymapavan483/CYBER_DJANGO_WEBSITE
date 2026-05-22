@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>OTP Verification</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            height: 100vh;
+            background: linear-gradient(135deg, #0f2027, #2c5364);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            perspective: 1000px;
+        }
+
+        /* 3D Card */
+        .card {
+            width: 350px;
+            padding: 30px;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(15px);
+            box-shadow: 
+                0 20px 40px rgba(0,0,0,0.5),
+                inset 0 0 10px rgba(255,255,255,0.2);
+            transform-style: preserve-3d;
+            transition: 0.4s;
+            text-align: center;
+        }
+
+        .card:hover {
+            transform: rotateY(5deg) rotateX(5deg);
+        }
+
+        h2 {
+            color: #fff;
+            margin-bottom: 15px;
+        }
+
+        p.info {
+            color: #ccc;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 10px;
+            outline: none;
+            background: rgba(255,255,255,0.2);
+            color: #fff;
+            text-align: center;
+            font-size: 18px;
+            letter-spacing: 5px;
+            box-shadow: inset 2px 2px 5px rgba(0,0,0,0.3);
+        }
+
+        input::placeholder {
+            color: #ddd;
+            letter-spacing: normal;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 10px;
+            border: none;
+            border-radius: 10px;
+            background: linear-gradient(45deg, #00b5ad, #00d4ff);
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        }
+
+        button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 25px rgba(0,0,0,0.4);
+        }
+
+        .msg {
+            color: #ff4d4d;
+            margin-top: 10px;
+        }
+
+        a {
+            display: block;
+            margin-top: 15px;
+            color: #00d4ff;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <h2>🔐 Verify OTP</h2>
+    <p class="info">Enter the OTP sent to your email</p>
+
+    <form method="post">
+        {% csrf_token %}
+        <input type="number" name="otp" placeholder="Enter OTP" required>
+        <button type="submit">Verify</button>
+    </form>
+
+    <p class="msg">{{ msg }}</p>
+
+    <a href="/register/">Back to Register</a>
+</div>
+
+</body>
+</html>
